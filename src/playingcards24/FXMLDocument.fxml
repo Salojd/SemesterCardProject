@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="584.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="playingcards24.FXMLDocumentController">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="406.0" prefWidth="584.0">
+         <children>
+            <Button fx:id="findSolution" layoutX="20.0" layoutY="14.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="185.0" style="-fx-background-color-fx-background-color: #2872C5#2872C5; -fx-border-style: solid; -fx-border-width: 2;" text="Find Solution">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <TextField fx:id="solutionField" layoutX="212.0" layoutY="10.0" prefHeight="46.0" prefWidth="202.0" promptText="solution" style="-fx-border-style-: solid; -fx-border-width: 2; -fx-border-color: #2872C5#2872C5 #2872C5#2872C5;" />
+            <Button fx:id="refreshText" layoutX="427.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadCardImages" prefHeight="39.0" prefWidth="137.0" style="-fx-background-color-fx-background-color: #2872C5#2872C5; -fx-border-style: solid; -fx-border-width: 2;" text="Refresh">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="verifyCheck" layoutX="453.0" layoutY="346.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" style="-fx-background-color-fx-background-color: #2872C5#2872C5; -fx-border-style: solid; -fx-border-width: 2;" text="Verify">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <TextField fx:id="ExpressionField" layoutX="225.0" layoutY="343.0" prefHeight="46.0" prefWidth="202.0" promptText="expression" style="-fx-border-style-: solid; -fx-border-width: 2; -fx-border-color: #2872C5#2872C5 #2872C5#2872C5;" />
+            <Label layoutX="24.0" layoutY="346.0" prefHeight="39.0" prefWidth="185.0" text=" Enter an Expression  : ">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <VBox layoutX="33.0" layoutY="111.0" prefHeight="156.0" prefWidth="104.0" style="-fx-border-style: solid; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="card1" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox layoutX="174.0" layoutY="111.0" prefHeight="156.0" prefWidth="104.0" style="-fx-border-style: solid; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="card2" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox layoutX="313.0" layoutY="111.0" prefHeight="156.0" prefWidth="104.0" style="-fx-border-style: solid; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="card3" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox layoutX="450.0" layoutY="111.0" prefHeight="156.0" prefWidth="104.0" style="-fx-border-style: solid; -fx-border-width: 2;">
+               <children>
+                  <ImageView fx:id="card4" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
