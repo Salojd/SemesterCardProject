@@ -33,6 +33,8 @@ public class PlayingCards24 extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+        
+        System.out.print("TESTING");
     }
     
 }
