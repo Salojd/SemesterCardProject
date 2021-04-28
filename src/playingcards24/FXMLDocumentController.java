@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,6 +26,8 @@ import javax.swing.JOptionPane;
  * @author peterschellhorn
  */
 public class FXMLDocumentController  implements Initializable {
+    
+    
     
     // JavaScript Engine added to handle math equations
     ScriptEngineManager mgr = new ScriptEngineManager();
@@ -65,6 +68,8 @@ public class FXMLDocumentController  implements Initializable {
     @FXML
     private Label timer;
     
+    
+    
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,6 +78,29 @@ public class FXMLDocumentController  implements Initializable {
         //initialImgsSelector(fourCardStack);
     }    
 
+    
+        
+    
+    
+    /** ******Timer: *******
+      long startTime = System.currentTimeMillis();
+        Label timerLabel = new Label();
+
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                long elapsedMillis = System.currentTimeMillis() - startTime ;
+                timerLabel.setText(Long.toString(elapsedMillis / 1000));
+            }
+        }.start();
+    
+   */
+    
+    
+    
+    
+    
+    
     @FXML
     private void loadCardImages(ActionEvent event) {
 		try {
@@ -261,6 +289,8 @@ public class FXMLDocumentController  implements Initializable {
 
 		refreshText.setText(null);
 	}
+        
+        
 
     @FXML
     private void findSolution(ActionEvent event) {
@@ -411,3 +441,4 @@ public class FXMLDocumentController  implements Initializable {
 
 
 }
+
