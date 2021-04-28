@@ -40,7 +40,7 @@
                <children>
                   <ImageView fx:id="card1" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../CardImages/2_of_clubs.png" />
+                        <Image url="@../CardImages/3_of_hearts.png" />
                      </image></ImageView>
                </children>
             </VBox>
@@ -48,7 +48,7 @@
                <children>
                   <ImageView fx:id="card2" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../CardImages/jack_of_hearts.png" />
+                        <Image url="@../CardImages/king_of_clubs.png" />
                      </image></ImageView>
                </children>
             </VBox>
@@ -56,7 +56,7 @@
                <children>
                   <ImageView fx:id="card3" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../CardImages/ace_of_clubs.png" />
+                        <Image url="@../CardImages/4_of_diamonds.png" />
                      </image></ImageView>
                </children>
             </VBox>
@@ -64,12 +64,12 @@
                <children>
                   <ImageView fx:id="card4" fitHeight="164.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../CardImages/queen_of_diamonds.png" />
+                        <Image url="@../CardImages/2_of_clubs.png" />
                      </image></ImageView>
                </children>
             </VBox>
-            <Label fx:id="feedback" layoutX="310.0" layoutY="297.0" prefHeight="29.0" prefWidth="248.0" text="Feedback" />
             <Label fx:id="timer" layoutX="33.0" layoutY="76.0" prefHeight="17.0" prefWidth="148.0" text="Time:" />
+            <Label fx:id="feedback" layoutX="140.0" layoutY="298.0" prefHeight="26.0" prefWidth="402.0" text="Feedback:" />
          </children>
       </Pane>
    </children>
