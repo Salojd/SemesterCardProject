@@ -78,14 +78,12 @@ public class FXMLDocumentController implements Initializable {
     private void loadCardImages(ActionEvent event) {
         try {
             time = System.nanoTime() - time;
-            Formatter f = new Formatter("log.txt");
-            f.format("%s", "Refreshing cards\n");
-            f.format("%s %s", Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)), "seconds used\n");
-            f.close();
+            timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
             time = System.nanoTime();
 
             solutionField.setText("");
             ExpressionField.setText("");
+            feedback.setText("Feedback:");
 
             // Random Generator created
             Random r = new Random();
@@ -123,12 +121,9 @@ public class FXMLDocumentController implements Initializable {
     private void verifyUserExpression(ActionEvent event) throws ScriptException {
         try {
             time = System.nanoTime() - time;
-            Formatter f = new Formatter("log.txt");
-            f.format("%s", "Verifying solution\n");
-            f.format("%s %s", Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)),
-                "seconds used to solve\n");
+            
             time = System.nanoTime();
-
+            timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
             int[] n = new int[13];
             for (int i = 0; i < 4; i++) {
                 n[cards[i].getValue() - 1]++;
@@ -147,25 +142,18 @@ public class FXMLDocumentController implements Initializable {
                     if (engine.eval(expressionInput).equals(24)) {
                         isCorrect = true;
                         System.out.println(engine.eval(expressionInput));
-                        //JOptionPane.showMessageDialog(null, "Success! The total is 24.", "Verify Math Equation", 1);
-                        feedback.setText("Success! The total is 24.");
-                        f.format("%s", "Solution is correct\n");
+                        feedback.setText("Correct! The total is 24.");
                     } else {
                         isCorrect = false;
                         System.out.println(engine.eval(expressionInput));
-                        //JOptionPane.showMessageDialog(null, "Oops! The total is not 24, Please try again.",
-                        //"Verify Math Equation", 1);
-                        feedback.setText("Oops! The total is not 24, Please try again.");
-                        f.format("%s", "Solution is incorrect\n");
+                        feedback.setText("Incorrect! The total is not 24, Please try again.");
                     }
-                } else {
-                    isCorrect = false;
-                    //JOptionPane.showMessageDialog(null, "Incorrect input. Please try again.", "Verify Math Equation", 1);
+                }else {
+                    isCorrect = false;// cant get this to output***********
                     feedback.setText("Incorrect input. Please try again.");
-                    f.format("%s", "Incorrect input\n");
                 }
             }
-            f.close();
+            
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -187,77 +175,6 @@ public class FXMLDocumentController implements Initializable {
         return count;
     }
 
-    public void isExpression(String input) {
-        try {
-            Pattern p = Pattern.compile("[a-zA-Z]+");
-            Matcher m = p.matcher(input);
-            if (m.find()) {
-                JOptionPane.showMessageDialog(null, "Invalid: " + input + " is not an expression in numeric form");
-                feedback.setText("Invalid: " + input + " is not an expression in numeric form");
-                ExpressionField.clear();
-                m.reset();
-            }
-            p = Pattern.compile("[^0-9\\+\\(\\)\\+\\-\\/\\*]");
-            m = p.matcher(input);
-            if (m.find()) {
-                JOptionPane.showMessageDialog(null, "Please enter a valid numeric expression!");
-                feedback.setText("\"Please enter a valid numeric expression!\"");
-                ExpressionField.clear();
-                m.reset();
-            }
-            p = Pattern.compile("^[\\*\\+\\-\\)\\/]");
-            m = p.matcher(input);
-            if (m.find()) {
-                JOptionPane.showMessageDialog(null, "Invalid: the first character cannot be + - / x ) ");
-                feedback.setText("Invalid: the first character cannot be + - / x ) ");
-                ExpressionField.clear();
-                m.reset();
-            } else {
-                String validInput = input;
-
-                logic(validInput);
-            }
-
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void logic(String s) {
-        ScriptEngineManager checker = new ScriptEngineManager();
-        ScriptEngine engine = checker.getEngineByName("JavaScript");
-        try {
-            Object textboxText = engine.eval(s); //this is where excution is taking place
-            String userTotal = textboxText.toString();
-            String correctAns = "24";
-            System.out.println(userTotal);
-            if (userTotal.equals(correctAns)) {
-                JOptionPane.showMessageDialog(null, "Good Job! Correct Answer");
-            }
-
-        } catch (ScriptException e) {}
-    }
-
-    // determine if operators entered are valid
-    public static boolean isOperator(char operator) {
-        return (operator == '(' ||
-            operator == ')' ||
-            isArithmeticOperator(operator));
-    }
-    public static boolean isArithmeticOperator(char operator) {
-        return (operator == '/' ||
-            operator == '+' ||
-            operator == '-' ||
-            operator == '*');
-    }
-
-
-
-    public void clear(ActionEvent clr) {
-
-        refreshText.setText(null);
-    }
 
     @FXML
     private void findSolution(ActionEvent event) {
