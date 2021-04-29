@@ -120,6 +120,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void verifyUserExpression(ActionEvent event) throws ScriptException {
         try {
+            //maybe move timer so if expression is wrong, timer is still running
             time = System.nanoTime() - time;
             
             time = System.nanoTime();
@@ -180,10 +181,6 @@ public class FXMLDocumentController implements Initializable {
     private void findSolution(ActionEvent event) {
         try {
             time = System.nanoTime() - time;
-            Formatter f = new Formatter("log.txt");
-            f.format("%s", "Finding solution\n");
-            f.format("%s %s", Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)),
-                "seconds used to obtain solution\n");
             time = System.nanoTime();
 
             int[] n = {
@@ -199,16 +196,14 @@ public class FXMLDocumentController implements Initializable {
                 String str = getEquation(n, list);
                 if (engine.eval(str).equals(24)) {
                     solutionField.setText(str);
-                    f.format("%s", "Solution found\n");
+                    
                 } else {
                     solutionField.setText("No Solution for: [" + Integer.toString(n[0]) + ", " + Integer.toString(n[1]) + ", " + Integer.toString(n[2]) + ", " + Integer.toString(n[3]) + "]");
-                    f.format("%s", "No solution found\n");
                 }
             } else {
                 solutionField.setText("No Solution for: [" + Integer.toString(n[0]) + ", " + Integer.toString(n[1]) + ", " + Integer.toString(n[2]) + ", " + Integer.toString(n[3]) + "]");
-                f.format("%s", "No solution found\n");
+                
             }
-            f.close();
         } catch (Exception e) {
             System.out.println("Error");
         }
