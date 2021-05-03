@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -77,8 +78,16 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void loadCardImages(ActionEvent event) {
         try {
+            long startTime = System.currentTimeMillis();
+            new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                long elapsedMillis = System.currentTimeMillis() - startTime ;
+                timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
+            }
+        }.start();
             time = System.nanoTime() - time;
-            timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
+            //timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
             time = System.nanoTime();
 
             solutionField.setText("");
