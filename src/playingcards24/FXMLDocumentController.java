@@ -77,6 +77,8 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loadCardImages(ActionEvent event) {
+        
+        System.out.println("Testing");
         try {
             long startTime = System.currentTimeMillis();
             new AnimationTimer() {
@@ -115,24 +117,29 @@ public class FXMLDocumentController implements Initializable {
                 } while (abundant == true);
                 cards[i] = new Cards(number, type, n1 + 1);
             }
+            setImage();
             // Images are set in the GUI
-            card1.setImage(cards[0].getImage());
-            card2.setImage(cards[1].getImage());
-            card3.setImage(cards[2].getImage());
-            card4.setImage(cards[3].getImage());
+            //card1.setImage(cards[0].getImage());
+            //card2.setImage(cards[1].getImage());
+            //card3.setImage(cards[2].getImage());
+            //card4.setImage(cards[3].getImage());
         } catch (Exception e) {
             System.out.println("Error");
         }
     }
-
+            //added to clean up code with methods, taken from above
+            public void setImage(){
+            card1.setImage(cards[0].getImage());
+            card2.setImage(cards[1].getImage());
+            card3.setImage(cards[2].getImage());
+            card4.setImage(cards[3].getImage());
+           }
 
     @FXML
     private void verifyUserExpression(ActionEvent event) throws ScriptException {
         try {
             //maybe move timer so if expression is wrong, timer is still running
-            time = System.nanoTime() - time;
             
-            time = System.nanoTime();
             timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
             int[] n = new int[13];
             for (int i = 0; i < 4; i++) {
