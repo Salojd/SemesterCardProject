@@ -2,7 +2,6 @@ package playingcards24;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Formatter;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -86,9 +85,7 @@ public class FXMLDocumentController implements Initializable {
                 timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
             }
         }.start();
-            time = System.nanoTime() - time;
-            //timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
-            time = System.nanoTime();
+            
 
             solutionField.setText("");
             ExpressionField.setText("");
@@ -127,13 +124,10 @@ public class FXMLDocumentController implements Initializable {
 
 
     @FXML
-    private void verifyUserExpression(ActionEvent event) throws ScriptException {
+    private void verifyUserExpression(ActionEvent event) {
+        
         try {
-            //maybe move timer so if expression is wrong, timer is still running
-            time = System.nanoTime() - time;
-            
-            time = System.nanoTime();
-            timer.setText("Time: "+ Long.toString(TimeUnit.SECONDS.convert(time, TimeUnit.NANOSECONDS)) + "seconds");
+           
             int[] n = new int[13];
             for (int i = 0; i < 4; i++) {
                 n[cards[i].getValue() - 1]++;
@@ -159,7 +153,7 @@ public class FXMLDocumentController implements Initializable {
                         feedback.setText("Incorrect! The total is not 24, Please try again.");
                     }
                 }else {
-                    isCorrect = false;// cant get this to output***********
+                    isCorrect = false;
                     feedback.setText("Incorrect input. Please try again.");
                 }
             }
@@ -189,8 +183,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void findSolution(ActionEvent event) {
         try {
-            time = System.nanoTime() - time;
-            time = System.nanoTime();
+            
 
             int[] n = {
                 cards[0].getValue(),
