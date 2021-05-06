@@ -76,6 +76,7 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void loadCardImages(ActionEvent event) {
+        
         try {
             long startTime = System.currentTimeMillis();
             new AnimationTimer() {
@@ -112,22 +113,27 @@ public class FXMLDocumentController implements Initializable {
                 } while (abundant == true);
                 cards[i] = new Cards(number, type, n1 + 1);
             }
-            // Images are set in the GUI
-            card1.setImage(cards[0].getImage());
-            card2.setImage(cards[1].getImage());
-            card3.setImage(cards[2].getImage());
-            card4.setImage(cards[3].getImage());
+            setImage();
+            
         } catch (Exception e) {
             System.out.println("Error");
         }
     }
-
+            //added to clean up code with methods, taken from above
+            public void setImage(){
+            card1.setImage(cards[0].getImage());
+            card2.setImage(cards[1].getImage());
+            card3.setImage(cards[2].getImage());
+            card4.setImage(cards[3].getImage());
+           }
 
     @FXML
     private void verifyUserExpression(ActionEvent event) {
         
         try {
-           
+            
+            
+                   
             int[] n = new int[13];
             for (int i = 0; i < 4; i++) {
                 n[cards[i].getValue() - 1]++;
@@ -143,6 +149,13 @@ public class FXMLDocumentController implements Initializable {
                     count(expressionInput, Integer.toString(cards[2].getValue())) == n[cards[2].getValue() - 1] &&
                     count(expressionInput, Integer.toString(cards[3].getValue())) == n[cards[3].getValue() - 1] &&
                     count(expressionInput, "") == 4) {
+                    
+                    /*System.out.println(cards[0].getValue());
+                    System.out.println(n[cards[0].getValue() - 1]);
+              
+                    System.out.println(count(expressionInput, Integer.toString(cards[0].getValue())) == n[cards[0].getValue() - 1]);
+                    System.out.println(expressionInput);*/
+                    
                     if (engine.eval(expressionInput).equals(24)) {
                         isCorrect = true;
                         System.out.println(engine.eval(expressionInput));
@@ -156,6 +169,9 @@ public class FXMLDocumentController implements Initializable {
                     isCorrect = false;
                     feedback.setText("Incorrect input. Please try again.");
                 }
+            }else{
+                isCorrect = false;
+                feedback.setText("Please enter correct input");
             }
             
         } catch (Exception e) {
