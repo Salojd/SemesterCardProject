@@ -12,7 +12,7 @@ Direction to use program
                             > Finish(click okay)
 
 
-Tutorial
+Tutorial<br>
 Run the application.
 Recognize the value of each card displayed in the GUI.
 Create a math equation using these four cards and input it inside the "Enter an expression" text field.
