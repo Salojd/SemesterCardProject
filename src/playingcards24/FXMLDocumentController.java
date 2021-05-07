@@ -101,11 +101,19 @@ public class FXMLDocumentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         writeToFile("START");
+        long startTime = System.currentTimeMillis();
+            new AnimationTimer() {
+                @Override
+                public void handle(long now) {
+                    long elapsedMillis = System.currentTimeMillis() - startTime;
+                    timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
+                }
+            }.start();
     }
 
     @FXML
     private void loadCardImages(ActionEvent event) {
-
+        
         try {
             long startTime = System.currentTimeMillis();
             new AnimationTimer() {
@@ -113,6 +121,7 @@ public class FXMLDocumentController implements Initializable {
                 public void handle(long now) {
                     long elapsedMillis = System.currentTimeMillis() - startTime;
                     timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
+                    //System.out.println(timer.getText());
                 }
             }.start();
 
@@ -190,6 +199,8 @@ public class FXMLDocumentController implements Initializable {
                         System.out.println(engine.eval(expressionInput));
                         feedback.setText("Correct! The total is 24.");
                         writeToFile("Correct user expression");
+                        writeToFile("TIME");
+                        //timer stop
                     } else {
                         isCorrect = false;
                         System.out.println(engine.eval(expressionInput));
@@ -232,6 +243,8 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private void findSolution(ActionEvent event) {
         writeToFile("Find solution button clicked");
+        writeToFile("TIME");
+        
         try {
 
 
@@ -362,11 +375,14 @@ public class FXMLDocumentController implements Initializable {
 
             FileWriter myWriter = new FileWriter("log.txt", true);
 
-            if (str == "START") {
-                myWriter.write("\n" + "===========START==============\n");
+            if (str.equals("START")) {
+                myWriter.write("\n===========START==============\n");
             }
-
+            if(str.equals("TIME")){
+                myWriter.write("    TIMER: " + timer.getText()+"\n");
+            }else{
             myWriter.write(count + ") " + str + " on " + formatter.format(date) + System.getProperty("line.separator"));
+            }
             myWriter.close();
             count++;
             System.out.println("Successfully wrote to the file.");

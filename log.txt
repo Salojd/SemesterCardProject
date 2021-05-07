@@ -7,3 +7,72 @@
 5) Find solution button clicked at 05-07-2021 at 16:31:17 
 6) Verify button clicker at 05-07-2021 at 16:31:28 
 7) Correct user experession at 05-07-2021 at 16:31:28 
+
+===========START==============
+1) START on 05-07-2021 at 17:13:03 
+2) Find solution button clicked on 05-07-2021 at 17:13:07 
+3) Refresh button clicked on 05-07-2021 at 17:13:08 
+4) Find solution button clicked on 05-07-2021 at 17:13:09 
+5) Refresh button clicked on 05-07-2021 at 17:13:10 
+6) Find solution button clicked on 05-07-2021 at 17:13:11 
+7) Verify button clicker on 05-07-2021 at 17:13:18 
+8) Incorrect input in user expression  on 05-07-2021 at 17:13:18 
+9) Verify button clicker on 05-07-2021 at 17:13:22 
+10) Incorrect input in user expression  on 05-07-2021 at 17:13:22 
+11) Verify button clicker on 05-07-2021 at 17:13:23 
+12) Incorrect input in user expression  on 05-07-2021 at 17:13:23 
+13) Verify button clicker on 05-07-2021 at 17:13:28 
+14) Incorrect user expression  on 05-07-2021 at 17:13:28 
+15) Verify button clicker on 05-07-2021 at 17:13:32 
+16) Correct user expression on 05-07-2021 at 17:13:32 
+
+===========START==============
+1) START on 05-07-2021 at 17:13:47 
+
+===========START==============
+1) START on 05-07-2021 at 17:14:04 
+
+===========START==============
+1) START on 05-07-2021 at 17:58:26 
+2) Refresh button clicked on 05-07-2021 at 17:58:34 
+3) Refresh button clicked on 05-07-2021 at 17:58:49 
+
+===========START==============
+1) START on 05-07-2021 at 18:03:06 
+2) Refresh button clicked on 05-07-2021 at 18:03:10 
+
+===========START==============
+1) START on 05-07-2021 at 18:04:46 
+2) Refresh button clicked on 05-07-2021 at 18:04:50 
+
+===========START==============
+1) START on 05-07-2021 at 18:06:56 
+2) Refresh button clicked on 05-07-2021 at 18:06:59 
+3) Refresh button clicked on 05-07-2021 at 18:07:05 
+4) Refresh button clicked on 05-07-2021 at 18:07:21 
+
+===========START==============
+1) START on 05-07-2021 at 18:21:23 
+2) Refresh button clicked on 05-07-2021 at 18:21:27 
+3) Find solution button clicked on 05-07-2021 at 18:21:32 
+
+===========START==============
+1) START on 05-07-2021 at 18:37:16 
+2) Refresh button clicked on 05-07-2021 at 18:37:24 
+3) Find solution button clicked on 05-07-2021 at 18:37:30 
+TIMER: Time: 5 seconds
+5) Verify button clicker on 05-07-2021 at 18:37:44 
+6) Correct user expression on 05-07-2021 at 18:37:44 
+TIMER: Time: 19 seconds
+8) Refresh button clicked on 05-07-2021 at 18:39:57 
+
+===========START==============
+1) START on 05-07-2021 at 18:40:57 
+2) Find solution button clicked on 05-07-2021 at 18:41:02 
+TIMER: Time: 4 seconds
+
+===========START==============
+1) START on 05-07-2021 at 18:41:35 
+2) Verify button clicker on 05-07-2021 at 18:41:46 
+3) Correct user expression on 05-07-2021 at 18:41:46 
+    TIMER: Time: 10 seconds
