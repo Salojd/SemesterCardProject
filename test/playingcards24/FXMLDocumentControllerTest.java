@@ -5,6 +5,7 @@
  */
 package playingcards24;
 
+import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -14,35 +15,28 @@ import static org.junit.Assert.*;
  */
 public class FXMLDocumentControllerTest {
     
-    FXMLDocumentController fdc;
-    
-    public FXMLDocumentControllerTest() {
-        fdc = new FXMLDocumentController();
-    }
+    Cards card = new Cards();
 
-    @Test
-    public void testInitialize() {
-    }
+	@Test
+	public void test1() {
+		int v = 6;
+		card.setValue(v);
+		assertEquals(6, card.getValue());
+	}
 
-    @Test
-    public void testSetImage() {
-    }
+	@Test
+	public void test2() {
+		String number = "5";
+		card.setNumber(number);
+		Assert.assertTrue(card.getNumber().equals("5"));
+	}
 
-    @Test
-    public void testCount() {
-        assertEquals(1, fdc.count("5+4+2", "111"));
-    }
-
-    @Test
-    public void testGetInstructions() {
-    }
-
-    @Test
-    public void testGetEquation() {
-    }
-
-    @Test
-    public void testEvaluate() {
+	@Test
+	public void test3() {
+		// setting setters and getters for type
+		String type = "clubs";
+		card.setType(type);
+		Assert.assertTrue(card.getType().equals("clubs"));
     }
     
 }
