@@ -1,3 +1,9 @@
-Finding solution
-18 seconds used to obtain solution
-Solution found
+
+===========START==============
+1) START at 05-07-2021 at 16:31:08 
+2) Refresh button clicked at 05-07-2021 at 16:31:12 
+3) Find solution button clicked at 05-07-2021 at 16:31:14 
+4) Refresh button clicked at 05-07-2021 at 16:31:16 
+5) Find solution button clicked at 05-07-2021 at 16:31:17 
+6) Verify button clicker at 05-07-2021 at 16:31:28 
+7) Correct user experession at 05-07-2021 at 16:31:28 

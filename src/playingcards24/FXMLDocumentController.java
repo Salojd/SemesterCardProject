@@ -1,7 +1,11 @@
 package playingcards24;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
@@ -29,11 +33,36 @@ public class FXMLDocumentController implements Initializable {
     // JavaScript Engine added to handle math equations
     ScriptEngineManager mgr = new ScriptEngineManager();
     ScriptEngine engine = mgr.getEngineByName("JavaScript");
+    
 
     // Arrays created to hold the value and suits of the card
-    static private String[] cardNumber = {"ace","2","3","4","5","6","7","8","9","10","jack","queen","king"}, 
-            cardType = {"clubs","diamonds","hearts","spades"}, 
-            operators = {"+","-","*","/"};
+    static private String[] cardNumber = {
+            "ace",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "jack",
+            "queen",
+            "king"
+        },
+        cardType = {
+            "clubs",
+            "diamonds",
+            "hearts",
+            "spades"
+        },
+        operators = {
+            "+",
+            "-",
+            "*",
+            "/"
+        };
 
     Cards[] cards = new Cards[] {
         new Cards("3", "hearts", 3), new Cards("king", "clubs", 13), new Cards("4", "diamonds", 4),
@@ -71,23 +100,23 @@ public class FXMLDocumentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        writeToFile("START");
     }
 
     @FXML
     private void loadCardImages(ActionEvent event) {
-        
+
         try {
             long startTime = System.currentTimeMillis();
             new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                long elapsedMillis = System.currentTimeMillis() - startTime ;
-                timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
-            }
-        }.start();
-            
+                @Override
+                public void handle(long now) {
+                    long elapsedMillis = System.currentTimeMillis() - startTime;
+                    timer.setText("Time: " + Long.toString(elapsedMillis / 1000) + " seconds");
+                }
+            }.start();
 
+            writeToFile("Refresh button clicked");
             solutionField.setText("");
             ExpressionField.setText("");
             feedback.setText("Feedback:");
@@ -114,26 +143,26 @@ public class FXMLDocumentController implements Initializable {
                 cards[i] = new Cards(number, type, n1 + 1);
             }
             setImage();
-            
+
         } catch (Exception e) {
             System.out.println("Error");
         }
     }
-            //added to clean up code with methods, taken from above
-            public void setImage(){
-            card1.setImage(cards[0].getImage());
-            card2.setImage(cards[1].getImage());
-            card3.setImage(cards[2].getImage());
-            card4.setImage(cards[3].getImage());
-           }
+    //added to clean up code with methods, taken from above
+    public void setImage() {
+        card1.setImage(cards[0].getImage());
+        card2.setImage(cards[1].getImage());
+        card3.setImage(cards[2].getImage());
+        card4.setImage(cards[3].getImage());
+    }
 
     @FXML
     private void verifyUserExpression(ActionEvent event) {
-        
+        writeToFile("Verify button clicker");
         try {
-            
-            
-                   
+
+
+
             int[] n = new int[13];
             for (int i = 0; i < 4; i++) {
                 n[cards[i].getValue() - 1]++;
@@ -149,31 +178,35 @@ public class FXMLDocumentController implements Initializable {
                     count(expressionInput, Integer.toString(cards[2].getValue())) == n[cards[2].getValue() - 1] &&
                     count(expressionInput, Integer.toString(cards[3].getValue())) == n[cards[3].getValue() - 1] &&
                     count(expressionInput, "") == 4) {
-                    
+
                     /*System.out.println(cards[0].getValue());
                     System.out.println(n[cards[0].getValue() - 1]);
               
                     System.out.println(count(expressionInput, Integer.toString(cards[0].getValue())) == n[cards[0].getValue() - 1]);
                     System.out.println(expressionInput);*/
-                    
+
                     if (engine.eval(expressionInput).equals(24)) {
                         isCorrect = true;
                         System.out.println(engine.eval(expressionInput));
                         feedback.setText("Correct! The total is 24.");
+                        writeToFile("Correct user expression");
                     } else {
                         isCorrect = false;
                         System.out.println(engine.eval(expressionInput));
                         feedback.setText("Incorrect! The total is not 24, Please try again.");
+                        writeToFile("Incorrect user expression ");
                     }
-                }else {
+                } else {
                     isCorrect = false;
                     feedback.setText("Incorrect input. Please try again.");
+                    writeToFile("Incorrect input in user expression ");
                 }
-            }else{
+            } else {
                 isCorrect = false;
                 feedback.setText("Please enter correct input");
+                writeToFile("Incorrect input in user expression ");
             }
-            
+
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -198,8 +231,9 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private void findSolution(ActionEvent event) {
+        writeToFile("Find solution button clicked");
         try {
-            
+
 
             int[] n = {
                 cards[0].getValue(),
@@ -214,13 +248,13 @@ public class FXMLDocumentController implements Initializable {
                 String str = getEquation(n, list);
                 if (engine.eval(str).equals(24)) {
                     solutionField.setText(str);
-                    
+
                 } else {
                     solutionField.setText("No Solution for: [" + Integer.toString(n[0]) + ", " + Integer.toString(n[1]) + ", " + Integer.toString(n[2]) + ", " + Integer.toString(n[3]) + "]");
                 }
             } else {
                 solutionField.setText("No Solution for: [" + Integer.toString(n[0]) + ", " + Integer.toString(n[1]) + ", " + Integer.toString(n[2]) + ", " + Integer.toString(n[3]) + "]");
-                
+
             }
         } catch (Exception e) {
             System.out.println("Error");
@@ -316,6 +350,31 @@ public class FXMLDocumentController implements Initializable {
                 return x / y;
         }
         return 0;
+    }
+
+    int count = 1;
+    public void writeToFile(String str) {
+        //
+        SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy 'at' HH:mm:ss ");
+        Date date = new Date(System.currentTimeMillis());
+
+        try {
+
+            FileWriter myWriter = new FileWriter("log.txt", true);
+
+            if (str == "START") {
+                myWriter.write("\n" + "===========START==============\n");
+            }
+
+            myWriter.write(count + ") " + str + " on " + formatter.format(date) + System.getProperty("line.separator"));
+            myWriter.close();
+            count++;
+            System.out.println("Successfully wrote to the file.");
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
 
