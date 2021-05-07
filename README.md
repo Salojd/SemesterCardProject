@@ -8,8 +8,8 @@ This application randomly generates four different cards from a deck. The deck c
 <br>Direction to use program<br>
  Make sure you are using JDK9- <br>
   in Project  > Properties > Libraries > Compile add library for classpath(Javafx) > Run add library for moudule(Javafx)<br>
-                           &nbsp; > Run > VM options "--add-modules javafx.controls,javafx.base,javafx.fxml"<br>
-                           &nbsp; > Finish(click okay)<br>
+                          &emsp; > Run > VM options "--add-modules javafx.controls,javafx.base,javafx.fxml"<br>
+                          &emsp; > Finish(click okay)<br>
 
 
 <br>Tutorial<br>
