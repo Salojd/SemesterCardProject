@@ -1,3 +1,7 @@
+/**
+ * This is the entire Playing Cards 24 package including the game and its tests
+ */
+
 package playingcards24;
 
 import java.io.FileWriter;
@@ -25,8 +29,11 @@ import javax.script.ScriptException;
 
 
 /**
- *
- * @author peterschellhorn
+ * A class that contains everything being used to create the Playing Cards 24 game
+ * @author peterschellhorn, Brett Silver
+ * @verson 1.0
+ * @since 2021-4-15
+ * 
  */
 public class FXMLDocumentController implements Initializable {
 
@@ -72,6 +79,11 @@ public class FXMLDocumentController implements Initializable {
     long time = System.nanoTime();
 
     boolean isCorrect;
+    
+    /**
+     * These are the identifiers from this game from the FXML file including the buttons, labels, images, timer,
+     * and images. This is the front end part of the program.
+     */
 
     private Label label;
     @FXML
@@ -97,10 +109,18 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label timer;
 
-
+    
+    /**
+     * Initialize is being used to initialize the controller after the root element has been processed. 
+     * @param url a pointer to a resource on the world wide web or folder
+     * @param rb provides FXMLLoader
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         writeToFile("START");
+        /**
+         * Creates a timer that starts when program opens, counting by seconds. 
+         */
         long startTime = System.currentTimeMillis();
             new AnimationTimer() {
                 @Override
@@ -111,10 +131,19 @@ public class FXMLDocumentController implements Initializable {
             }.start();
     }
 
+    /**
+     * This method has all the code required to both load the cards with the values connected to them, as well
+     * as gives the ability to refresh the cards in a random order.
+     * @param event The actual event of pressing the button, and then loading random images.
+     */
+    
     @FXML
     private void loadCardImages(ActionEvent event) {
         
         try {
+            /**
+             * Below is a timer that refreshes to 0 each time the event is triggered
+             */
             long startTime = System.currentTimeMillis();
             new AnimationTimer() {
                 @Override
@@ -124,7 +153,11 @@ public class FXMLDocumentController implements Initializable {
                     //System.out.println(timer.getText());
                 }
             }.start();
-
+            
+            /**
+             * The log method is called to record that the button has been clicked
+             * Multiple fields are refreshed after the event is used
+             */
             writeToFile("Refresh button clicked");
             solutionField.setText("");
             ExpressionField.setText("");
@@ -133,6 +166,9 @@ public class FXMLDocumentController implements Initializable {
             // Random Generator created
             Random r = new Random();
 
+            /**
+             * Below is the loop to create both a random card and its suit
+             */
             for (int i = 0; i < 4; i++) {
                 int n1 = r.nextInt(13), n2 = r.nextInt(4);
                 String number = cardNumber[n1], type = cardType[n2];
@@ -157,7 +193,9 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("Error");
         }
     }
-    //added to clean up code with methods, taken from above
+    /*
+    This method sets the image based on which images were pulled from the loop
+    */
     public void setImage() {
         card1.setImage(cards[0].getImage());
         card2.setImage(cards[1].getImage());
@@ -165,6 +203,12 @@ public class FXMLDocumentController implements Initializable {
         card4.setImage(cards[3].getImage());
     }
 
+    /**
+     * This method is used to check if what the user inputs into the textbox, matches
+     * the cards that have been outputted. If yes, a message will appear telling the user
+     * if the input is right or wrong
+     * @param event This is the event of checking wether the input is right or wrong
+     */
     @FXML
     private void verifyUserExpression(ActionEvent event) {
         writeToFile("Verify button clicker");
@@ -177,6 +221,9 @@ public class FXMLDocumentController implements Initializable {
                 n[cards[i].getValue() - 1]++;
             }
             String expressionInput = ExpressionField.getText();
+            /**
+             * If statement checks to see if the input matches which cards are displayed
+             */
             if (expressionInput.contains(Integer.toString(cards[0].getValue())) &&
                 expressionInput.contains(Integer.toString(cards[1].getValue())) &&
                 expressionInput.contains(Integer.toString(cards[2].getValue())) &&
@@ -188,12 +235,7 @@ public class FXMLDocumentController implements Initializable {
                     count(expressionInput, Integer.toString(cards[3].getValue())) == n[cards[3].getValue() - 1] &&
                     count(expressionInput, "") == 4) {
 
-                    /*System.out.println(cards[0].getValue());
-                    System.out.println(n[cards[0].getValue() - 1]);
-              
-                    System.out.println(count(expressionInput, Integer.toString(cards[0].getValue())) == n[cards[0].getValue() - 1]);
-                    System.out.println(expressionInput);*/
-
+                  //This if statement checks to see if the input equals to 24
                     if (engine.eval(expressionInput).equals(24)) {
                         isCorrect = true;
                         System.out.println(engine.eval(expressionInput));
@@ -202,6 +244,7 @@ public class FXMLDocumentController implements Initializable {
                         writeToFile("TIME");
                         //timer stop
                     } else {
+                        //If the input is incorrect, the following code is the error
                         isCorrect = false;
                         System.out.println(engine.eval(expressionInput));
                         feedback.setText("Incorrect! The total is not 24, Please try again.");
@@ -223,6 +266,12 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**
+     * 
+     * @param str
+     * @param n
+     * @return 
+     */
     public int count(String str, String n) {
         int count = 0;
         Pattern p = Pattern.compile("\\d+");
@@ -240,6 +289,11 @@ public class FXMLDocumentController implements Initializable {
     }
 
 
+    /**
+     * This method will display the correct solution to Playing Cards 24. It will say
+     * what the solution is, or that there is no solution
+     * @param event The event used to find the solution
+     */
     @FXML
     private void findSolution(ActionEvent event) {
         writeToFile("Find solution button clicked");
@@ -351,6 +405,14 @@ public class FXMLDocumentController implements Initializable {
         return str;
     }
 
+    /**
+     * This method will decide the correct action based on the string s
+     * The method will either add, minus , multiply, or divide the given numbers
+     * @param x First number entered to be used
+     * @param y second number entered to be used
+     * @param s Will decide which action to take
+     * @return will return nothing or 0
+     */
     public int evaluate(int x, int y, String s) {
         switch (s) {
             case "+":
@@ -366,6 +428,10 @@ public class FXMLDocumentController implements Initializable {
     }
 
     int count = 1;
+    /**
+     * This method records every button pressed into a log file, including time, and if the action is correct
+     * @param str Initializes the method
+     */
     public void writeToFile(String str) {
         //
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy 'at' HH:mm:ss ");

@@ -76,3 +76,38 @@ TIMER: Time: 4 seconds
 2) Verify button clicker on 05-07-2021 at 18:41:46 
 3) Correct user expression on 05-07-2021 at 18:41:46 
     TIMER: Time: 10 seconds
+
+===========START==============
+1) START on 05-08-2021 at 17:45:08 
+2) Refresh button clicked on 05-08-2021 at 17:45:10 
+3) Find solution button clicked on 05-08-2021 at 17:45:12 
+    TIMER: Time: 2 seconds
+5) Find solution button clicked on 05-08-2021 at 17:45:15 
+    TIMER: Time: 5 seconds
+7) Verify button clicker on 05-08-2021 at 17:45:19 
+8) Incorrect input in user expression  on 05-08-2021 at 17:45:19 
+9) Verify button clicker on 05-08-2021 at 17:45:48 
+10) Incorrect input in user expression  on 05-08-2021 at 17:45:48 
+
+===========START==============
+1) START on 05-08-2021 at 17:46:23 
+2) Find solution button clicked on 05-08-2021 at 17:46:28 
+    TIMER: Time: 4 seconds
+4) Verify button clicker on 05-08-2021 at 17:46:37 
+5) Correct user expression on 05-08-2021 at 17:46:38 
+    TIMER: Time: 14 seconds
+
+===========START==============
+1) START on 05-08-2021 at 17:53:18 
+2) Verify button clicker on 05-08-2021 at 17:53:20 
+3) Incorrect input in user expression  on 05-08-2021 at 17:53:20 
+4) Verify button clicker on 05-08-2021 at 17:53:24 
+5) Incorrect input in user expression  on 05-08-2021 at 17:53:24 
+6) Verify button clicker on 05-08-2021 at 17:53:25 
+7) Incorrect input in user expression  on 05-08-2021 at 17:53:25 
+8) Verify button clicker on 05-08-2021 at 17:53:27 
+9) Incorrect input in user expression  on 05-08-2021 at 17:53:27 
+10) Verify button clicker on 05-08-2021 at 17:53:27 
+11) Incorrect input in user expression  on 05-08-2021 at 17:53:27 
+12) Verify button clicker on 05-08-2021 at 17:53:27 
+13) Incorrect input in user expression  on 05-08-2021 at 17:53:27 

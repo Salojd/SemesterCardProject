@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * This is the entire Playing Cards 24 package including the game and its tests
  */
+
 package playingcards24;
 
 import javafx.scene.image.Image;
 
 /**
  *
- * @author peterschellhorn
+ * @author peterschellhorn, Brett Silver
  */
 public class Cards {
     // Variables for Card Object
