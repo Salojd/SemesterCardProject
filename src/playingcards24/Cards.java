@@ -9,7 +9,10 @@ import javafx.scene.image.Image;
 /**
  *
  * @author peterschellhorn, Brett Silver
+ * This class has all the attributes of each card object
  */
+
+
 public class Cards {
     // Variables for Card Object
 	private String number, type;

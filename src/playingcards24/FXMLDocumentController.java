@@ -267,9 +267,9 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * 
-     * @param str
-     * @param n
+     * Getting two
+     * @param str user expression input
+     * @param n getting the value of the card
      * @return 
      */
     public int count(String str, String n) {
@@ -387,6 +387,12 @@ public class FXMLDocumentController implements Initializable {
         return new ArrayList < > ();
     }
 
+    /**
+     * This method gets an equation as an int array and translates it into a string
+     * @param n Getting the value of the array of the cards
+     * @param list
+     * @return returns the string of each value that has been converted
+     */
     public String getEquation(int[] n, ArrayList < String > list) {
         String str = "";
         for (int i = 0; i < list.size(); i++) {
@@ -406,7 +412,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * This method will decide the correct action based on the string s
+     * This method will evaluate what the user enters one at a time
      * The method will either add, minus , multiply, or divide the given numbers
      * @param x First number entered to be used
      * @param y second number entered to be used
@@ -430,10 +436,10 @@ public class FXMLDocumentController implements Initializable {
     int count = 1;
     /**
      * This method records every button pressed into a log file, including time, and if the action is correct
-     * @param str Initializes the method
+     * @param str A string that writes to the file. Specifies what to write to the file
      */
     public void writeToFile(String str) {
-        //
+        
         SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy 'at' HH:mm:ss ");
         Date date = new Date(System.currentTimeMillis());
 
