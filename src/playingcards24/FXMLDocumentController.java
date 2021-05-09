@@ -20,7 +20,7 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.Button;q
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -31,8 +31,9 @@ import javax.script.ScriptException;
 
 /**
  * A class that contains everything being used to create the Playing Cards 24 game
- * @author Peter Schellhorn, Brett Silver
- * @verson 1.0
+ * Prof Alrajab
+ * @author Peter Schellhorn, Brett Silver, Jonathan Saloman, Aayushma Pal
+ * @version 1.0
  * @since 2021-4-15
  * 
  */
