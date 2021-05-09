@@ -8,7 +8,21 @@ import javafx.scene.image.Image;
 
 /**
  *
- * @author peterschellhorn, Brett Silver
+ * BCS 345 Semester Project
+ * 
+ * Prof. Alrajab
+ * 
+ * @author Peter Schellhorn, Brett Silver, Jonathan Saloman, Aayushma Pal
+ * 
+ * @version 1.0
+ * 
+ *      Description: This application randomly generates four different cards from a deck. 
+ *      The deck contains four suits which includes clubs, diamonds, hearts, and spades. 
+ *      Each card contains a numbered value. For example, the value of Ace no matter which suit is picked is 1, 
+ *      the value of two of whichever suit is 2, Queen is 12, King is 13, etc. The objective of this game is to use these four randomly
+ *      generated cards to implement them into a math equation that results in the value of 24. You can either add, subtract, 
+ *      multiply, or divide when creating a math equation.
+ * 
  * This class has all the attributes of each card object
  */
 
