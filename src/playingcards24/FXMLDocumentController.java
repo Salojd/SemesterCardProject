@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -30,7 +31,7 @@ import javax.script.ScriptException;
 
 /**
  * A class that contains everything being used to create the Playing Cards 24 game
- * @author peterschellhorn, Brett Silver
+ * @author Peter Schellhorn, Brett Silver
  * @verson 1.0
  * @since 2021-4-15
  * 
@@ -204,7 +205,7 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * This method is used to check if what the user inputs into the textbox, matches
+     * This method is used to check if what the user inputs into the textfield, matches
      * the cards that have been outputted. If yes, a message will appear telling the user
      * if the input is right or wrong
      * @param event This is the event of checking wether the input is right or wrong
@@ -252,36 +253,40 @@ public class FXMLDocumentController implements Initializable {
                     }
                 } else {
                     isCorrect = false;
-                    feedback.setText("Incorrect input. Please try again.");
+                    feedback.setText("Incorrect Input: Numbers can't be concatenated");
                     writeToFile("Incorrect input in user expression ");
                 }
             } else {
                 isCorrect = false;
-                feedback.setText("Please enter correct input");
-                writeToFile("Incorrect input in user expression ");
+                feedback.setText("Incorrect Input: tip(J=11,Q=12,K=13,A=1)");
+                writeToFile("Incorrect input in user expression");
             }
 
         } catch (Exception e) {
             System.out.println("Error");
+            feedback.setText("Error: Check operation symbols");
         }
     }
 
     /**
-     * Getting two
+     * Method that confirms the use of the card values in the user expression by using pattern and matcher methods
      * @param str user expression input
      * @param n getting the value of the card
-     * @return 
+     * @return count 
      */
     public int count(String str, String n) {
         int count = 0;
+        //System.out.println("Out::str: "+str+ " /n"+n);
         Pattern p = Pattern.compile("\\d+");
         Matcher m = p.matcher(str);
         while (m.find()) {
             if (n.equals("")) {
+                //System.out.println( "In while ::Count: " + count +" /n" + n);
                 count++;
             } else {
                 if (m.group().equals(n)) {
                     count++;
+                    //System.out.println( "In while :: Count: " + count +" /m.group(): " + m.group()+" /n:" + n);
                 }
             }
         }
@@ -290,8 +295,9 @@ public class FXMLDocumentController implements Initializable {
 
 
     /**
-     * This method will display the correct solution to Playing Cards 24. It will say
-     * what the solution is, or that there is no solution
+     * This method will display a correct solution to Playing Cards 24. It will say
+     * what the solution is, or that there is no solution via whats returned from the 
+     * getInstruction method
      * @param event The event used to find the solution
      */
     @FXML
@@ -310,7 +316,7 @@ public class FXMLDocumentController implements Initializable {
             };
             boolean[] deleted = new boolean[n.length];
             ArrayList < String > list = getInstructions(-1, -1, -1, n, deleted);
-
+            //System.out.println("find solution" + list);
             if (!list.isEmpty()) {
                 String str = getEquation(n, list);
                 if (engine.eval(str).equals(24)) {
@@ -327,17 +333,26 @@ public class FXMLDocumentController implements Initializable {
             System.out.println("Error");
         }
     }
-
-    /**'
+    
+    /**
+     * This method is a recursive method that finds the correct order of operations to get 
+     * the numbers representing the cards to equal 24.Its calls itself trying different operations with
+     * the numbers representing the card and the solutions of pairs of the numbers.It will continue to run until 
+     * either a solution equaling 24 is found or it has tested every scenario possible.
+     *  
      * 
-     * @param i1 
-     * @param i2
-     * @param i3
-     * @param n
-     * @param deleted
-     * @return 
+     * @param i1 first number it is testing
+     * @param i2 operation being performed on i1 and i3
+     * @param i3 second number it is testing
+     * @param n array of the numbers being tested to equal 24
+     * @param deleted is an array list that representing if numbers and operations are true to the original numbers represented
+     * @return Array list tmpList is a list containing values representing the correct expression
+     * @return an empty array list
      */
+    //int count1 = 0;
     public ArrayList < String > getInstructions(int i1, int i2, int i3, int[] n, boolean[] deleted) {
+        //System.out.println(count1 +":: start of GI"+ "i1:"+ i1+ "  /i2:"+ i2+ "  /i3:"+i3 + "  /n:"+Arrays.toString(n) + "  /deleted:"+ Arrays.toString(deleted));
+        //count1=++count;
         int remain = 0, tmp = 0;
         for (int i = 0; i < deleted.length; i++) {
             if (!deleted[i]) {
@@ -373,6 +388,7 @@ public class FXMLDocumentController implements Initializable {
                                     break;
                                 }
                                 ArrayList < String > list = getInstructions(i, f, j, tmpn, tmpDeleted), tmpList = new ArrayList < > ();
+                                //System.out.println("inside gI " + list);
                                 if (list.size() > 0) {
                                     for (int o = 0; o < list.size(); o++) {
                                         if (list.get(o).substring(0, list.get(o).indexOf(",")).equals("number") && list.get(o).substring(list.get(o).indexOf(",") + 1, list.get(o).length()).equals(Integer.toString(i1))) {
@@ -385,6 +401,7 @@ public class FXMLDocumentController implements Initializable {
                                             tmpList.add(list.get(o));
                                         }
                                     }
+                                    //System.out.println("tmplist: " +tmpList);
                                     return tmpList;
                                 }
                             }
@@ -393,6 +410,8 @@ public class FXMLDocumentController implements Initializable {
                 }
             }
         }
+                
+        //System.out.println("end of GI"+ "i1:"+ i1+ "  /i2:"+ i2+ "  /i3:"+i3 + "  /n:"+Arrays.toString(n) + "  /deleted:"+ Arrays.toString(deleted));
         return new ArrayList < > ();
     }
 
@@ -421,12 +440,11 @@ public class FXMLDocumentController implements Initializable {
     }
 
     /**
-     * This method will evaluate what the user enters one at a time
-     * The method will either add, minus , multiply, or divide the given numbers
-     * @param x First number entered to be used
-     * @param y second number entered to be used
-     * @param s Will decide which action to take
-     * @return will return the operation performed or 0
+     * This method will evaluate the numbers and operation passed to it 
+     * @param x First number to be used in the operation
+     * @param y second number to be used in the operation
+     * @param s specifies operation
+     * @return will return nothing, or 0 if there is not a valid operation
      */
     public int evaluate(int x, int y, String s) {
         switch (s) {
@@ -441,9 +459,8 @@ public class FXMLDocumentController implements Initializable {
         }
         return 0;
     }
-    //Specifies number events logged and written to file
-    int count = 1;
-    
+
+    int timerCounter = 1;
     /**
      * This method writes to log file the events and actual time that take place(start, button presses)
      * Also records timer for find solution, and verify
@@ -464,10 +481,10 @@ public class FXMLDocumentController implements Initializable {
             if(str.equals("TIME")){
                 myWriter.write("    TIMER: " + timer.getText()+"\n");
             }else{
-            myWriter.write(count + ") " + str + " on " + formatter.format(date) + System.getProperty("line.separator"));
+            myWriter.write(timerCounter + ") " + str + " on " + formatter.format(date) + System.getProperty("line.separator"));
             }
             myWriter.close();
-            count++;
+            timerCounter++;
             System.out.println("Successfully wrote to the file.");
 
         } catch (IOException e) {
