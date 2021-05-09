@@ -328,6 +328,15 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    /**'
+     * 
+     * @param i1 
+     * @param i2
+     * @param i3
+     * @param n
+     * @param deleted
+     * @return 
+     */
     public ArrayList < String > getInstructions(int i1, int i2, int i3, int[] n, boolean[] deleted) {
         int remain = 0, tmp = 0;
         for (int i = 0; i < deleted.length; i++) {
@@ -389,9 +398,9 @@ public class FXMLDocumentController implements Initializable {
 
     /**
      * This method gets an equation as an int array and translates it into a string
-     * @param n Getting the value of the array of the cards
-     * @param list
-     * @return returns the string of each value that has been converted
+     * @param n Array of card values
+     * @param list an array list with the equation and the numbers
+     * @return returns the equation as a string
      */
     public String getEquation(int[] n, ArrayList < String > list) {
         String str = "";
@@ -417,7 +426,7 @@ public class FXMLDocumentController implements Initializable {
      * @param x First number entered to be used
      * @param y second number entered to be used
      * @param s Will decide which action to take
-     * @return will return nothing or 0
+     * @return will return the operation performed or 0
      */
     public int evaluate(int x, int y, String s) {
         switch (s) {
@@ -432,11 +441,13 @@ public class FXMLDocumentController implements Initializable {
         }
         return 0;
     }
-
+    //Specifies number events logged and written to file
     int count = 1;
+    
     /**
-     * This method records every button pressed into a log file, including time, and if the action is correct
-     * @param str A string that writes to the file. Specifies what to write to the file
+     * This method writes to log file the events and actual time that take place(start, button presses)
+     * Also records timer for find solution, and verify
+     * @param str A string that writes to the file or specifies what to write to the file
      */
     public void writeToFile(String str) {
         
