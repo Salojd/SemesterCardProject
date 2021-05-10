@@ -33,10 +33,17 @@ public class Cards {
 	private Image image;
 	private int value;
 
-	public Cards() {
+    public Cards() {
 	}
 
 	// Constructor for Card Object
+
+    /**
+     *
+     * @param n the number of the card based upon what the user inputs
+     * @param t the type of card
+     * @param v the total value of the 4 cards
+     */
 	public Cards(String n, String t, int v) {
 		this.number = n;
 		this.type = t;
@@ -45,43 +52,78 @@ public class Cards {
 	}
 
 	// Getters for Card Object
+
+    /**
+     *
+     * @return returns the number of the card 
+     */
 	public String getNumber() {
 		return this.number;
 	}
 
-	public String getType() {
+    /**
+     *
+     * @return returns the type of card
+     */
+    public String getType() {
 		return this.type;
 	}
 
-	public Image getImage() {
+    /**
+     *
+     * @return returns an image of a card
+     */
+    public Image getImage() {
 		return this.image;
 	}
 
-	public int getValue() {
+    /**
+     *
+     * @return returns the total value for all 4 cards
+     */
+    public int getValue() {
 		return this.value;
 	}
 
 	// Setters for Card object
+
+    /**
+     *
+     * @param n sets the number of the card based on user input 
+     */
 	public void setNumber(String n) {
 		this.number = n;
 	}
 
-	public void setType(String t) {
+    /**
+     *
+     * @param t sets the type of card to be displayed on screen
+     */
+    public void setType(String t) {
 		this.type = t;
 	}
 
-	public void setImage(Image image) {
+    /**
+     *
+     * @param image sets the image to be displayed on screen
+     */
+    public void setImage(Image image) {
 		this.image = image;
 	}
 
-	public void setValue(int value) {
+    /**
+     *
+     * @param value sets the value of all 4 cards displayed on screen
+     */
+    public void setValue(int value) {
 		this.value = value;
 	}
-
+    /**
+     * 
+     * @return returns a string representation for the card number and type 
+     */
 	// ToString for Card Object
 	public String toString() {
 		return this.number + "_of_" + this.type;
 	}
 }
-
-
